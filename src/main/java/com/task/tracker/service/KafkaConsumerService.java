@@ -12,8 +12,9 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumerService {
 
     private final EmailSenderService emailSenderService;
+    private final String TOPIC = "EMAIL_SENDING_TASKS";
 
-    @KafkaListener(topics = "EMAIL_SENDING_TASKS", groupId = "group_id")
+    @KafkaListener(topics = TOPIC, groupId = "group_id")
     public void consume(EmailMessageDto emailMessage) {
         log.info("A message has arrived for the mail {}", emailMessage.email());
 
